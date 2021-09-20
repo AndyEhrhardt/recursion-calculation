@@ -1,8 +1,3 @@
-let testString1 = "5*6-6+5/2"
-//26.5 
-let testString2 = "5*2/3+3-7/2/2"
-//4.5833
-
 const createArrays = (equationString) => {
     let numArr = equationString.replaceAll("+", " ").replaceAll("-", " ").replaceAll("*", " ").replaceAll("/", " "); 
     //^removes all the operators from the string
@@ -21,26 +16,21 @@ const createArrays = (equationString) => {
     return getResult(operArr, numArr)
 }
 
-let theResult = createArrays(testString2)
-
-console.log(theResult)
-
 const getResult = (operArr, numArr) => {
     let resultToAdd = 0;
     if (numArr.length === 1){
-        console.log(numArr[0])
         return numArr[0];
     }
     for (let i = 0; i<operArr.length; i++){ //loops through array of operators
       if (operArr[i]==="*"||operArr[i]==="/"){ //first checks * and / for order of operations 
         switch (operArr[i]) {
-        case "/": resultToAdd = numArr[i] / numArr[i+1]; break; //does calculation depending on operator
-        case "*": resultToAdd = numArr[i] * numArr[i+1]; break;
+            case "/": resultToAdd = numArr[i] / numArr[i+1]; break; 
+            //does calculation depending on operator
+            case "*": resultToAdd = numArr[i] * numArr[i+1]; break;
         }
         operArr.splice(i, 1); //removes the used operator 
         numArr.splice(i,2,resultToAdd); //replaces the first number in the equation with the result-
         //and removes the index after the first number
-        console.log(operArr,numArr);
         return getResult(operArr, numArr); //enters the modified arrays back into the function 
       }
     }
@@ -48,14 +38,12 @@ const getResult = (operArr, numArr) => {
       if (operArr[i]==="+"||operArr[i]==="-"){ 
         //^once the oper array has been emptied of * and / then + and - can be calculated
         switch (operArr[i]) {
-        case "-": resultToAdd = numArr[i] - numArr[i+1]; break;
-        case "+": resultToAdd = numArr[i] + numArr[i+1]; break;
+            case "-": resultToAdd = numArr[i] - numArr[i+1]; break;
+            case "+": resultToAdd = numArr[i] + numArr[i+1]; break;
         }
         operArr.splice(i, 1);
-        numArr.splice(i,2,resultToAdd);
-        console.log(operArr,numArr);
+        numArr.splice(i,2,resultToAdd);      
         return getResult(operArr, numArr);
       }
     }
 }
-
