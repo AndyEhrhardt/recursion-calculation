@@ -1,6 +1,6 @@
 ### Description
 
-The client.js file contains code that takes in an equation in the form of a string, and returns a result. It does this without using an eval(), taking into account order of operations and using recursion.
+The client.js file contains code that takes in an equation in the form of a string, and returns a result. It does this without using an eval(), taking into account order of operations and uses recursion.
 
 The first function, createArrays, takes in the string and creates two arrays. One array contains all the operators, and the second contains all the numbers, both are in the order they appear within the original equation string. Then both arrays are passed into the second function.
 
